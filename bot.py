@@ -31,10 +31,12 @@ def build_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(rows)
 
 WELCOME_TEXT = (
-    "👋 Merci d’avoir rejoint le canal !\n\n"
-    "Voici mes services disponibles 👇\n"
-    "Clique sur le service qui t’intéresse et **envoie-moi un message privé automatiquement** ✅"
+    "👋 Merci d’avoir rejoint le canal !\n"
+    "✅ Pour profiter de mes services, il vous suffit de cliquer sur celui qui vous intéresse.\n"
+    "⚡ Je vous répondrai rapidement et validerai votre demande dans les plus brefs délais.\n"
+    "👉 Contact direct : @lafameee"
 )
+
 
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(WELCOME_TEXT, reply_markup=build_keyboard(), parse_mode="Markdown")
