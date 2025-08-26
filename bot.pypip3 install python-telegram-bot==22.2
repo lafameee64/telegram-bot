@@ -1,0 +1,28 @@
+from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram import Update
+
+BOT_TOKEN = "8158399936:AAGZaDsO9D-mQ-wXlOMnzR8X-us0xmNThEY"
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("✅ Ton bot fonctionne ! Bienvenue 😉")
+
+if __name__ == "__main__":
+    app = Application.builder().token(BOT_TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.run_polling()
+
+
+
+
+from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram import Update
+
+BOT_TOKEN = "8158399936:AAGZaDsO9D-mQ-wXlOMnzR8X-us0xmNThEY"
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("✅ Ton bot fonctionne ! Bienvenue 😉")
+
+if __name__ == "__main__":
+    app = Application.builder().token(BOT_TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.run_polling()
