@@ -1,64 +1,36 @@
-from telegram.ext import Application, ChatJoinRequestHandler, ContextTypes, CallbackQueryHandler
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import Application, CommandHandler, ContextTypes
 
-BOT_TOKEN = "8158399936:AAGZaDsO9D-mQ-wXlOMnzR8X-us0xmNThEY"
-ADMIN_ID = 1233060758  # Ton ID Telegram
+BOT_TOKEN = "TON_TOKEN_ICI"
 
-# Liste de services avec message adapté
-services = {
-    "site_web": ("🌐 Création de site", "Bonjour, je suis intéressé par la création d’un site web."),
-    "app_mobile": ("📱 Développement App", "Bonjour, je suis intéressé par le développement d’une application mobile."),
-    "design": ("🎨 Design Logo", "Bonjour, je souhaite un logo / design graphique."),
-    "marketing": ("📢 Marketing Réseaux", "Bonjour, je souhaite un accompagnement marketing réseaux."),
-    "redaction": ("✍️ Rédaction Contenu", "Bonjour, j’ai besoin de rédaction de contenu."),
-    "seo": ("🔎 SEO Référencement", "Bonjour, je souhaite améliorer mon référencement SEO."),
-    "video": ("🎥 Montage Vidéo", "Bonjour, je cherche un service de montage vidéo."),
-    "publicite": ("📊 Gestion Publicité", "Bonjour, je souhaite de l’aide pour gérer mes publicités."),
-    "bots": ("🤖 Automatisation Bot", "Bonjour, je souhaite mettre en place un bot / automatisation."),
-    "business": ("📈 Stratégie Business", "Bonjour, je souhaite des conseils en stratégie business.")
+SERVICES = {
+    "🌐 Création de site": "Bonjour, je souhaite un site web.",
+    "📱 Développement App": "Bonjour, je souhaite une application.",
+    "🎨 Design Logo": "Bonjour, je souhaite un logo/design graphique.",
+    "📢 Marketing Réseaux": "Bonjour, je souhaite un accompagnement marketing réseaux.",
+    "✍️ Rédaction Contenu": "Bonjour, je souhaite une rédaction de contenu.",
+    "🔎 SEO Référencement": "Bonjour, je souhaite un service SEO / référencement.",
+    "🎬 Montage Vidéo": "Bonjour, je souhaite un montage vidéo.",
+    "📊 Gestion Publicité": "Bonjour, je souhaite une gestion de publicité.",
+    "🤖 Automatisation Bot": "Bonjour, je souhaite une automatisation via bot.",
+    "📈 Stratégie Business": "Bonjour, je souhaite une stratégie business.",
 }
 
-# Quand quelqu’un rejoint
-async def on_join_request(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    req = update.chat_join_request
-
-    # Générer les boutons avec callback
-    keyboard = [
-        [InlineKeyboardButton(label, callback_data=key)]
-        for key, (label, _) in services.items()
-    ]
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    keyboard = []
+    for name, text in SERVICES.items():
+        url = f"https://t.me/lafameee?text={text.replace(' ', '+')}"
+        keyboard.append([InlineKeyboardButton(name, url=url)])
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    await context.bot.send_message(
-        chat_id=req.from_user.id,
-        text="👋 Merci d’avoir rejoint le canal !\n\nSélectionne le service qui t’intéresse 👇",
+    await update.message.reply_text(
+        "👋 Merci d’avoir rejoint le canal !\n\n"
+        "Voici mes services disponibles 👇\n"
+        "Clique sur le service qui t’intéresse et envoie-moi un message privé automatiquement ✅",
         reply_markup=reply_markup
-    )
-
-# Quand l’utilisateur clique
-async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    query = update.callback_query
-    await query.answer()
-
-    service_key = query.data
-    label, message = services[service_key]
-
-    # Message de confirmation pour l’utilisateur
-    await query.edit_message_text(
-        text=f"✅ Merci ! Tu as choisi : {label}\n\n"
-             f"👉 Clique ici pour m’envoyer directement un message :\n"
-             f"https://t.me/lafameee?text={message.replace(' ', '%20')}"
-    )
-
-    # Notification pour toi (admin)
-    await context.bot.send_message(
-        chat_id=ADMIN_ID,
-        text=f"📢 Nouvel utilisateur : @{query.from_user.username}\n"
-             f"Service choisi : {label}"
     )
 
 if __name__ == "__main__":
     app = Application.builder().token(BOT_TOKEN).build()
-    app.add_handler(ChatJoinRequestHandler(on_join_request))
-    app.add_handler(CallbackQueryHandler(button_handler))
+    app.add_handler(CommandHandler("start", start))
     app.run_polling()
