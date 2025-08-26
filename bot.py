@@ -7,7 +7,7 @@ async def on_join_request(update: Update, context: ContextTypes.DEFAULT_TYPE):
     req = update.chat_join_request
     await context.bot.send_message(
         chat_id=req.from_user.id,
-        text="👋 Salut ! Voici mon contact direct : @lafameee"
+        text="👋 Salut ! Voici mon contactyyt direct : @lafameee"
     )
 
 if __name__ == "__main__":
