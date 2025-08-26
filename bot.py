@@ -40,7 +40,7 @@ CATEGORIES = {
         },
     ),
     "id": (
-        "🆔 Pièces d’identité",
+        "🆔 Pièces d’identité Officielles",
         {
             "Passeport": "Bonjour, je souhaite une pièce d’identité : passeport.",
             "Carte nationale": "Bonjour, je souhaite une pièce d’identité : carte nationale.",
@@ -49,7 +49,7 @@ CATEGORIES = {
         },
     ),
     "bank": (
-        "🏦 Ouvertures de Comptes",
+        "🏦 Ouvertures de Comptes bancaires verifiés",
         {
             "Revolut": "Bonjour, je souhaite une ouverture de compte Revolut.",
             "Boursorama": "Bonjour, je souhaite une ouverture de compte Boursorama.",
@@ -76,19 +76,19 @@ CATEGORIES = {
         },
     ),
     "online": (
-        "💻 Services en ligne",
+        "💻 Compte Airbnb verfiés, Leboncoin etc..",
         {
-            "Airbnb": "Bonjour, je souhaite une prestation liée à Airbnb.",
-            "Leboncoin": "Bonjour, je souhaite une prestation liée à Leboncoin.",
-            "Amazon": "Bonjour, je souhaite une prestation liée à Amazon.",
-            "Booking": "Bonjour, je souhaite une prestation liée à Booking.",
-            "Vinted / Cdiscount / Nike": "Bonjour, je souhaite une prestation (Vinted / Cdiscount / Nike).",
+            "Airbnb": "Bonjour, je souhaite ouvrir un compte Airbnb.",
+            "Leboncoin": "Bonjour, je souhaite ouvrir un compte Leboncoin.",
+            "Amazon": "Bonjour, je souhaite ouvrir un compte Amazon.",
+            "Booking": "Bonjour, je souhaite ouvrir un compte Booking.",
+            "Vinted / Cdiscount / Nike": "Bonjour, je souhaite ouvrir un compte (Vinted / Cdiscount / Nike).",
         },
     ),
     "other": (
         "🚗 Autres Services",
         {
-            "Location de voiture": "Bonjour, je souhaite une prestation de location de voiture.",
+            "Location de voiture": "Bonjour, je souhaite louer une voiture pas à mon nom.",
             "Mutuelle": "Bonjour, je souhaite une prestation liée à la mutuelle.",
             "Autre (précisez)": "Bonjour, j’ai une demande spécifique (autre).",
         },
